@@ -4,7 +4,6 @@ import br.com.cerniauskas.translatorkmp.core.domain.onError
 import br.com.cerniauskas.translatorkmp.core.domain.onSuccess
 import br.com.cerniauskas.translatorkmp.core.domain.util.toCommonStateFlow
 import br.com.cerniauskas.translatorkmp.core.presentation.UiLanguage
-import br.com.cerniauskas.translatorkmp.translate.data.history.toHistoryEntity
 import br.com.cerniauskas.translatorkmp.translate.domain.HistoryDataSource
 import br.com.cerniauskas.translatorkmp.translate.domain.usercase.Translate
 import kotlinx.coroutines.CoroutineScope
@@ -17,6 +16,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.updateAndGet
 import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 class TranslateViewModel(
     private val translate: Translate,
@@ -29,7 +29,7 @@ class TranslateViewModel(
     private val _state = MutableStateFlow(TranslateState())
     val state = combine(
         _state,
-        historyDataSource.getHistory()
+        historyDataSource.getHistory(viewModelScope.coroutineContext)
     ) { state, history ->
         if (state.history != history) {
             state.copy(

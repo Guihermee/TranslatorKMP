@@ -6,8 +6,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
 
     alias(libs.plugins.jetbrains.kotlin.serialization)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.room)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -36,10 +35,6 @@ kotlin {
         }
     }
 
-    room {
-        schemaDirectory("$projectDir/schemas")
-    }
-    
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
@@ -55,8 +50,8 @@ kotlin {
 
             implementation(libs.kotlin.date.time)
 
-            implementation(libs.androidx.room.runtime)
-            implementation(libs.sqlite.bundled)
+            implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.coroutines.extensions)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -64,7 +59,7 @@ kotlin {
         iosMain.dependencies {
             // Dependência especifica do IOS
             implementation(libs.ktor.client.darwin)
-
+            implementation(libs.sqldelight.native.driver)
         }
         androidMain.dependencies {
             // Dependência especifica do android
@@ -73,9 +68,7 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
             implementation(libs.ktor.client.okhttp)
-        }
-        dependencies {
-            ksp(libs.androidx.room.compiler)
+            implementation(libs.sqldelight.android.driver)
         }
     }
 }
@@ -89,5 +82,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+}
+
+sqldelight {
+    databases {
+        create("TranslateDatabase") {
+            packageName.set("br.com.cerniauskas.translatorkmp.database")
+        }
     }
 }

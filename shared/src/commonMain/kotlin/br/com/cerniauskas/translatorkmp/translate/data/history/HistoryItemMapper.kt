@@ -1,8 +1,6 @@
 package br.com.cerniauskas.translatorkmp.translate.data.history
 
-import br.com.cerniauskas.translatorkmp.translate.data.database.HistoryEntity
 import br.com.cerniauskas.translatorkmp.translate.domain.HistoryItem
-import br.com.cerniauskas.translatorkmp.translate.presentation.UiHistoryItem
 import kotlinx.datetime.Clock
 
 fun HistoryEntity.toHistoryItem(): HistoryItem {

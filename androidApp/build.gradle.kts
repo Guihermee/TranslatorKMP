@@ -50,11 +50,24 @@ dependencies {
 
     // Koin for DI
     implementation(libs.koin.android)
+    implementation(libs.koin.compose)
     implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.compose.viewmodel)
+    api(libs.koin.core)
 
     implementation(libs.androidx.compose.material.icons.extended) // Extended icons
 
     // Navigation
     implementation(libs.jetbrains.compose.navigation)
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.ktor.android)
+    implementation(libs.ktor.client.okhttp)
+
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.test.runner)
+    androidTestImplementation(libs.test.rule)
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
