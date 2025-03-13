@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.compose.compiler)
+
+    alias(libs.plugins.jetbrains.kotlin.serialization)
 }
 
 android {
@@ -43,4 +45,16 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
+
+    implementation(libs.bundles.coil) // Coil for images
+
+    // Koin for DI
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+
+    implementation(libs.androidx.compose.material.icons.extended) // Extended icons
+
+    // Navigation
+    implementation(libs.jetbrains.compose.navigation)
+    implementation(libs.kotlinx.serialization.json)
 }

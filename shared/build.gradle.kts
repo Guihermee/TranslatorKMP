@@ -4,6 +4,10 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinCocoapods)
     alias(libs.plugins.androidLibrary)
+
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
@@ -31,13 +35,47 @@ kotlin {
             isStatic = true
         }
     }
+
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
     
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
+            implementation(libs.jetbrains.compose.navigation)
+            implementation(libs.kotlinx.serialization.json)
+
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            api(libs.koin.core)
+
+            implementation(libs.bundles.ktor)
+            implementation(libs.bundles.coil)
+
+            implementation(libs.kotlin.date.time)
+
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        iosMain.dependencies {
+            // Dependência especifica do IOS
+            implementation(libs.ktor.client.darwin)
+
+        }
+        androidMain.dependencies {
+            // Dependência especifica do android
+            implementation(libs.androidx.activity.compose)
+
+            implementation(libs.koin.android)
+            implementation(libs.koin.androidx.compose)
+            implementation(libs.ktor.client.okhttp)
+        }
+        dependencies {
+            ksp(libs.androidx.room.compiler)
         }
     }
 }
