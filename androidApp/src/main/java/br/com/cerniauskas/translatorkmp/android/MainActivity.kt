@@ -10,15 +10,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.com.cerniauskas.translatorkmp.android.translate.presentation.AndroidTranslateViewModel
 import br.com.cerniauskas.translatorkmp.android.translate.presentation.TranslateScreen
 import br.com.cerniauskas.translatorkmp.core.presentation.Routes
 import br.com.cerniauskas.translatorkmp.core.theme.TranslatorTheme
-import br.com.cerniauskas.translatorkmp.translate.presentation.AndroidTranslateViewModel
-import org.koin.androidx.compose.koinViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,7 @@ fun TranslateRoot() {
         startDestination = Routes.Translate
     ) {
         composable<Routes.Translate> {
-            val viewModel = koinViewModel<AndroidTranslateViewModel>()
+            val viewModel = hiltViewModel<AndroidTranslateViewModel>()
             val state by viewModel.state.collectAsState()
             TranslateScreen(
                 state = state,

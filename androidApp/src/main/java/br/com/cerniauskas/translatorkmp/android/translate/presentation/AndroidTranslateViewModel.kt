@@ -1,11 +1,16 @@
-package br.com.cerniauskas.translatorkmp.translate.presentation
+package br.com.cerniauskas.translatorkmp.android.translate.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.cerniauskas.translatorkmp.translate.domain.HistoryDataSource
 import br.com.cerniauskas.translatorkmp.translate.domain.usercase.Translate
+import br.com.cerniauskas.translatorkmp.translate.presentation.TranslateAction
+import br.com.cerniauskas.translatorkmp.translate.presentation.TranslateViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class AndroidTranslateViewModel(
+@HiltViewModel
+class AndroidTranslateViewModel @Inject constructor(
     private val translate: Translate,
     private val historyDataSource: HistoryDataSource
 ): ViewModel() {

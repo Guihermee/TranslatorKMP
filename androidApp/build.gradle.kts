@@ -4,6 +4,11 @@ plugins {
     alias(libs.plugins.compose.compiler)
 
     alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+}
+hilt {
+    enableAggregatingTask = false
 }
 
 android {
@@ -46,28 +51,25 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
 
-    implementation(libs.bundles.coil) // Coil for images
-
-    // Koin for DI
-    implementation(libs.koin.android)
-    implementation(libs.koin.compose)
-    implementation(libs.koin.androidx.compose)
-    implementation(libs.koin.compose.viewmodel)
-    api(libs.koin.core)
-
-    implementation(libs.androidx.compose.material.icons.extended) // Extended icons
-
-    // Navigation
+    // Generals
     implementation(libs.jetbrains.compose.navigation)
-    implementation(libs.kotlinx.serialization.json)
-
-    implementation(libs.ktor.android)
+    implementation(libs.androidx.compose.material.icons.extended)
+    implementation(libs.bundles.coil)
     implementation(libs.ktor.client.okhttp)
 
+    // Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.hilt.navigation.compose)
+
+    // Testing
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.test.runner)
     androidTestImplementation(libs.test.rule)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    kspAndroidTest(libs.hilt.android.compiler)
+    androidTestImplementation(libs.hilt.testing)
 }

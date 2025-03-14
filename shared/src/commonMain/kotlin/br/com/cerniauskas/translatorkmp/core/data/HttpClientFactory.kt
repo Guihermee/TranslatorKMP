@@ -1,4 +1,4 @@
-package br.com.cerniauskas.bookpedia.core.data
+package br.com.cerniauskas.translatorkmp.core.data
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine

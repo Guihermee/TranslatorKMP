@@ -38,23 +38,15 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
-            implementation(libs.jetbrains.compose.navigation)
-            implementation(libs.kotlinx.serialization.json)
-
-            implementation(libs.koin.compose)
-            implementation(libs.koin.compose.viewmodel)
-            api(libs.koin.core)
-
             implementation(libs.bundles.ktor)
-            implementation(libs.bundles.coil)
-
             implementation(libs.kotlin.date.time)
-
             implementation(libs.sqldelight.runtime)
             implementation(libs.sqldelight.coroutines.extensions)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.assertk)
+            implementation(libs.turbine)
         }
         iosMain.dependencies {
             // Dependência especifica do IOS
@@ -62,11 +54,6 @@ kotlin {
             implementation(libs.sqldelight.native.driver)
         }
         androidMain.dependencies {
-            // Dependência especifica do android
-            implementation(libs.androidx.activity.compose)
-
-            implementation(libs.koin.android)
-            implementation(libs.koin.androidx.compose)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.sqldelight.android.driver)
         }

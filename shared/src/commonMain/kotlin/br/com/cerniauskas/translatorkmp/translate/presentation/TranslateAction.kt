@@ -1,6 +1,5 @@
 package br.com.cerniauskas.translatorkmp.translate.presentation
 
-import androidx.compose.ui.text.TtsAnnotation
 import br.com.cerniauskas.translatorkmp.core.presentation.UiLanguage
 
 sealed class TranslateAction {
