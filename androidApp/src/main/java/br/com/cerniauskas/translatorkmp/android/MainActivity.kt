@@ -11,13 +11,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.cerniauskas.translatorkmp.android.translate.presentation.AndroidTranslateViewModel
 import br.com.cerniauskas.translatorkmp.android.translate.presentation.TranslateScreen
+import br.com.cerniauskas.translatorkmp.android.voice_to_text.presentation.VoiceToTextScreen
 import br.com.cerniauskas.translatorkmp.core.presentation.Routes
 import br.com.cerniauskas.translatorkmp.core.theme.TranslatorTheme
+import br.com.cerniauskas.translatorkmp.translate.presentation.TranslateAction
+import br.com.cerniauskas.translatorkmp.voice_to_text.presentation.VoiceToTextAction
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,7 +53,36 @@ fun TranslateRoot() {
             val state by viewModel.state.collectAsState()
             TranslateScreen(
                 state = state,
-                onAction = viewModel::onAction
+                onAction = { action ->
+                    when (action) {
+                        TranslateAction.RecordAudio -> {
+                            navController.navigate(
+                                Routes.VoiceToText(
+                                    viewModel.state.value.fromLanguage.language.langCode
+                                )
+                            )
+                        }
+
+                        else -> viewModel.onAction(action)
+                    }
+                }
+            )
+        }
+        composable<Routes.VoiceToText> {
+            val languageCode = it.arguments?.getString("languageCode") ?: "en"
+
+            VoiceToTextScreen(
+                languageCode = languageCode,
+                onResult = {
+
+                },
+                onAction = { action ->
+                    when (action) {
+                        VoiceToTextAction.Close -> TODO()
+
+                        else -> Unit
+                    }
+                }
             )
         }
     }

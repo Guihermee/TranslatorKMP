@@ -8,8 +8,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -17,10 +22,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import br.com.cerniauskas.translatorkmp.R
@@ -44,23 +52,41 @@ fun TranslateScreen(
 
     LaunchedEffect(state.error) {
         val message = when (state.error) {
-            DataError.Local.DISK_FULL -> context.getString(R.string.error_service_unavailable)
-            DataError.Local.UNKNOWN -> context.getString(R.string.error_service_unavailable)
-            DataError.Remote.REQUEST_TIMEOUT -> context.getString(R.string.error_service_unavailable)
-            DataError.Remote.TOO_MANY_REQUESTS -> context.getString(R.string.error_service_unavailable)
-            DataError.Remote.NO_INTERNET -> context.getString(R.string.error_service_unavailable)
+            DataError.Local.DISK_FULL -> context.getString(R.string.error_disk_full)
+            DataError.Local.UNKNOWN -> context.getString(R.string.unknown_error)
+            DataError.Remote.REQUEST_TIMEOUT -> context.getString(R.string.error_timeout)
+            DataError.Remote.TOO_MANY_REQUESTS -> context.getString(R.string.error_too_many_request)
+            DataError.Remote.NO_INTERNET -> context.getString(R.string.error_no_internet)
             DataError.Remote.SERVER -> context.getString(R.string.server_error)
-            DataError.Remote.SERIALIZATION -> context.getString(R.string.error_service_unavailable)
-            DataError.Remote.UNKNOWN -> context.getString(R.string.error_service_unavailable)
-            null -> context.getString(R.string.error_service_unavailable)
+            DataError.Remote.SERIALIZATION -> context.getString(R.string.error_serialization)
+            DataError.Remote.UNKNOWN -> context.getString(R.string.unknown_error)
+            null -> null
         }
-        //
+        message?.let {
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            onAction(TranslateAction.OnErrorSeen)
+        }
     }
 
     Scaffold(
         floatingActionButton = {
-
-        }
+            FloatingActionButton(
+                onClick = {
+                    onAction(TranslateAction.RecordAudio)
+                },
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+                modifier = Modifier
+                    .size(75.dp)
+                    .clip(RoundedCornerShape(100))
+            ) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.mic),
+                    contentDescription = stringResource(id = R.string.record_audio)
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.Center
     ){ padding ->
         LazyColumn(
             modifier = Modifier

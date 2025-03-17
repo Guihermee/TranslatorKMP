@@ -8,5 +8,7 @@ sealed interface Routes {
     data object Translate: Routes
 
     @Serializable
-    data object VoiceToText: Routes
+    data class VoiceToText(
+        val languageCode: String
+    ): Routes
 }

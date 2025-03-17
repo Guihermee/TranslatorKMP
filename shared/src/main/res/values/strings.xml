@@ -14,6 +14,11 @@
     <string name="error_service_unavailable">Oops, an error happened. Please try again later.</string>
     <string name="client_error">Oops, an error happened. Please contact the support.</string>
     <string name="server_error">An error happened. Please try again later.</string>
+    <string name="error_disk_full">Your device is out of storage. Please free up some space and try again.</string>
+    <string name="error_timeout">The request took too long to respond. Please try again later.</string>
+    <string name="error_too_many_request">You have made too many requests in a short period. Please wait and try again.</string>
+    <string name="error_no_internet">No internet connection. Please check your network and try again.</string>
+    <string name="error_serialization">An error occurred while processing the data. Please try again later.</string>
     <string name="unknown_error">Oops, an unknown error happened.</string>
     <string name="record_audio">Record audio</string>
     <string name="error_speech_recognition_unavailable">Speech recognition is not available</string>
