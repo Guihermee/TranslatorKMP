@@ -1,6 +1,5 @@
 package br.com.cerniauskas.translatorkmp.voice_to_text.presentation
 
-import br.com.cerniauskas.translatorkmp.core.domain.language.Language
 import br.com.cerniauskas.translatorkmp.core.domain.util.toCommonStateFlow
 import br.com.cerniauskas.translatorkmp.voice_to_text.domain.VoiceToTextParser
 import kotlinx.coroutines.CoroutineScope
@@ -24,14 +23,18 @@ class VoiceToTextViewModel(
     val state = _state.combine(parser.state) { state, voiceResult ->
         state.copy(
             spokenText = voiceResult.result,
-            recordError = voiceResult.error,
+            recordError = if (state.canRecord) {
+                voiceResult.error
+            } else {
+                "Can't record without permission"
+            },
             displayState = when {
-                voiceResult.error != null -> DisplayState.Error
+                !state.canRecord || voiceResult.error != null -> DisplayState.Error
                 voiceResult.result.isNotBlank() && !voiceResult.isSpeaking -> {
                     DisplayState.DisplayingResults
                 }
                 voiceResult.isSpeaking -> DisplayState.Speaking
-                else -> DisplayState.WaitingToRecord
+                else -> DisplayState.WaitingToTalk
             }
         )
     }
@@ -66,6 +69,7 @@ class VoiceToTextViewModel(
     }
 
     private fun toggleListening(languageCode: String) {
+        _state.update { it.copy(powerRatios = emptyList()) }
         parser.cancel()
         if (state.value.displayState == DisplayState.Speaking) {
             parser.stopListening()

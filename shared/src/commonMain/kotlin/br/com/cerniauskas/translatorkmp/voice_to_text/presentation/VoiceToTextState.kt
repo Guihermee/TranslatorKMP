@@ -9,7 +9,7 @@ data class VoiceToTextState(
 )
 
 enum class DisplayState {
-    WaitingToRecord,
+    WaitingToTalk,
     Speaking,
     DisplayingResults,
     Error
