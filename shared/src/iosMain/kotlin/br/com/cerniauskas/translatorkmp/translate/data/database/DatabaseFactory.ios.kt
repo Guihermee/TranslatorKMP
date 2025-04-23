@@ -1,5 +1,5 @@
 //@file:OptIn(ExperimentalForeignApi::class)
-
+//
 //package br.com.cerniauskas.translatorkmp.translate.data.database
 //
 //import androidx.room.Room

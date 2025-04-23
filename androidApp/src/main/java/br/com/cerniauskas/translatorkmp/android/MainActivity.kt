@@ -12,7 +12,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -20,7 +19,7 @@ import br.com.cerniauskas.translatorkmp.android.translate.presentation.AndroidTr
 import br.com.cerniauskas.translatorkmp.android.translate.presentation.TranslateScreen
 import br.com.cerniauskas.translatorkmp.android.voice_to_text.presentation.AndroidVoiceToTextParserViewModel
 import br.com.cerniauskas.translatorkmp.android.voice_to_text.presentation.VoiceToTextScreen
-import br.com.cerniauskas.translatorkmp.core.presentation.Routes
+import br.com.cerniauskas.translatorkmp.android.core.presentation.Routes
 import br.com.cerniauskas.translatorkmp.core.theme.TranslatorTheme
 import br.com.cerniauskas.translatorkmp.translate.presentation.TranslateAction
 import br.com.cerniauskas.translatorkmp.voice_to_text.presentation.VoiceToTextAction

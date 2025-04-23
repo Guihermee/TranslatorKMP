@@ -1,4 +1,4 @@
-package br.com.cerniauskas.translatorkmp.core.presentation
+package br.com.cerniauskas.translatorkmp.android.core.presentation
 
 import kotlinx.serialization.Serializable
 
