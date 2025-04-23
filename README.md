@@ -3,8 +3,8 @@ Bookpedia is an Kotlin Multiplatform Compose Application created using Jetpack c
 
 ## Result
 
-| ![Home](previews/home.jpg) | ![Tranlated](previews/translated.jpg) | | ![VoiceToText](previews/voiceToText.jpg) | ![ResultVoiceToText](previews/resultVoxToText.jpg) | | ![BackToHome](previews/backToHome.jpg) |
-|----------------------------|:------------------------------------:|:------------------------------------:|:------------------------------------:|:------------------------------------:|
+| ![Home](previews/home.jpg) | ![Tranlated](previews/translated.jpg) | ![VoiceToText](previews/voiceToText.jpg) | ![ResultVoiceToText](previews/resultVoxToText.jpg) | ![BackToHome](previews/backToHome.jpg) |
+|:----------------:|:----------------:|:----------------:|:----------------:|:----------------:|
 
 ## Tech stack & Open-source libraries
 - [Kotlin](https://kotlinlang.org/) based
