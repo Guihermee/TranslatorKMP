@@ -3,7 +3,7 @@ Bookpedia is an Kotlin Multiplatform Compose Application created using Jetpack c
 
 ## Result
 
-| ![Home](previews/home.jpg) | ![Tranlated](previews/translated.jpg) | ![VoiceToText](previews/voiceToText.jpg) | ![ResultVoiceToText](previews/resultVoxToText.jpg) | ![BackToHome](previews/backToHome.jpg) |
+| ![Home](previews/home.jpg) | ![Tranlated](previews/translated.jpg) | ![VoiceToText](previews/voiceToText.jpg) | ![ResultVoiceToText](previews/resultVoiceToText.jpg) | ![BackToHome](previews/backToHome.jpg) |
 |:----------------:|:----------------:|:----------------:|:----------------:|:----------------:|
 
 ## Tech stack & Open-source libraries
@@ -18,3 +18,4 @@ Bookpedia is an Kotlin Multiplatform Compose Application created using Jetpack c
     - [Flow](https://developer.android.com/kotlin/flow?hl=pt-br) - Handle asynchronous data streams in a lifecycle-aware way.
 - [Hilt](https://insert-koin.io/docs/quickstart/android/) - For [dependency injection](https://developer.android.com/training/dependency-injection/hilt-android).
 - [Ktor](https://ktor.io/docs/client-create-new-application.html) - Ktor HTTP request
+- [Coil](https://coil-kt.github.io/coil/) - For loading images
