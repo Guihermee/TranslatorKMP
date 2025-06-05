@@ -1,4 +1,4 @@
-package br.com.cerniauskas.translatorkmp.voice_to_text.presentation
+	package br.com.cerniauskas.translatorkmp.voice_to_text.presentation
 
 import br.com.cerniauskas.translatorkmp.core.domain.util.toCommonStateFlow
 import br.com.cerniauskas.translatorkmp.voice_to_text.domain.VoiceToTextParser
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class VoiceToTextViewModel(
     private val parser: VoiceToTextParser,
-    coroutineScope: CoroutineScope
+    coroutineScope: CoroutineScope?
 ) {
 
     private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)

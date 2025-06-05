@@ -31,9 +31,11 @@ struct LanguageDropDownItem: View {
 
 struct LanguageDropDownItem_Previews: PreviewProvider {
     static var previews: some View {
-        LanguageDropDownItem(
-            language: UiLanguage(language: .german, imageName: "german"),
-            onClick: {}
-        )
+        HStack {
+            LanguageDropDownItem(
+                language: UiLanguage(language: .ukrainian, imageName: "ukrainian"),
+                onClick: {}
+            )
+        }
     }
 }

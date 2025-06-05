@@ -31,7 +31,7 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
-            isStatic = true // Se quiser ver previews coloque false, minha VM morre quando esta ativada
+            isStatic = false // Se quiser ver previews coloque false, minha VM morre quando esta ativada
         }
     }
 
